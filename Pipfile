@@ -11,6 +11,8 @@ seaborn = "*"
 scikit-learn = "*"
 spacy = "*"
 tensorflow = "*"
+gensim = "*"
+category-encoders = "*"
 
 [requires]
 python_version = "3.7"
