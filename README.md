@@ -1,6 +1,7 @@
 # DS
 
 # Directory Structure:
+```
 ├── README.md          <- The top-level README for developers using this project.
 ├── data               <- Not on github      
 │   ├── processed      <- The final, canonical data sets for modeling.
@@ -21,7 +22,7 @@
 │
 └── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
                           generated with `pip freeze > requirements.txt`
-
+```
 ## New Additions:
 2019-10-21 - Setup project structure.
 
