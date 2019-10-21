@@ -1,7 +1,9 @@
-import psycopg2
 from config import Config
-import requests
+from flask import Flask, render_template, request
 import json
+from .model import model
+import psycopg2
+import requests
 
 # make a PostgreSQL database
 
@@ -23,7 +25,7 @@ cur.close()
 def create_tables():
     """make tables in PostgreSQL database"""
     commands = (
-        """DROP TABLE IF EXISTS users;""",
+        """DROP TABLE IF EXISTS users CASCADE;""",
         """
         CREATE TABLE users(
             user_id SERIAL PRIMARY KEY,
@@ -32,7 +34,7 @@ def create_tables():
         )
         """,
         """INSERT INTO users (user_name) VALUES ('joe');""",
-        """DROP TABLE IF EXISTS campaigns;""",
+        """DROP TABLE IF EXISTS campaigns CASCADE;""",
         """
         CREATE TABLE campaigns (
             campaign_id SERIAL PRIMARY KEY,
@@ -43,7 +45,7 @@ def create_tables():
             other5 INTERVAL
         )
         """,
-        """DROP TABLE IF EXISTS user_campaigns;""",
+        """DROP TABLE IF EXISTS user_campaigns CASCADE;""",
         """
         CREATE TABLE user_campaigns (
             campaign_id INTEGER NOT NULL,
@@ -103,10 +105,7 @@ def get_results(API):
     # combine chosen lists 
     data_list = list(tuple(zip(list1, list2)))
 
-    # may use json_normalize (from pandas.io.join)
-    #  to convert to pandas dataframe
 
-    # pre-model practice 
     def tuple_transformer(tuples):
     """a function for tuple-list preprocessing practice"""
         values = []
@@ -115,17 +114,36 @@ def get_results(API):
         return values
     # data_list = [('happy', 3), ('sad',5), ('mad',4), ('crazy',7)]
     # test = tuple_transformer(data_list)
-    # output: [3, 5, 4, 7]
+    # output -> [3, 5, 4, 7]
+    return tuple_transformer(data_list)
 
-    # pass through preprocessing function(s)
 
-    # pass through a model 
-    def model():
-        return "output_prediction_value"
+    # pass through a machine-learning model (MLM)
+    def predict(parameters):
+    """ make a prediction using the MLM"""
+        
+        # for inter-flask functionality use request module
+        # Eg. parameter_a, parameter_b = [request.values['parameter_a'],
+        #                            request.values['parameter_b']]
 
-    # consolidate the input and output values
-    def aggregator(inputs, outputs):
-        pass
+        if parameters[0] == 1106 and parameters[2] == 'Luc':
+            prediction = 'Happy Birthday!!!'
+        else:
+            prediction = model(parameters)
+            all_values = parameters.append(prediction)
+        
+        return all_values
+
+
+    def new(params_list):
+    """ recipe for passing list of tuples through a function """
+        for params in params_list:
+            a = params[0]
+            b = params[1]
+            c = params[2]
+            out = b + c
+        print(out)
+        #return out
 
     # return in json format
     json_str = json.dumps(data_list)
@@ -133,6 +151,7 @@ def get_results(API):
     return "" # json_str 
 
 
+# sample postgres entry insert function
 def insert_user_list(user_list):
     """ insert multiple users into the users table  """
     sql = """INSERT INTO users (user_name) VALUES(%s)"""
@@ -142,14 +161,14 @@ def insert_user_list(user_list):
         # connect to the PostgreSQL database
         conn = psycopg2.connect(dbname=DBNAME, user=USER,
             password=PASSWORD,host=HOST)
-        # create a new cursor
         cur = conn.cursor()
+
         # execute the INSERT statement
         cur.executemany(sql, user_list)
-        # commit the changes to the database
+
         conn.commit()
-        # close communication with the database
         cur.close()
+
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
