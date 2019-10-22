@@ -24,12 +24,12 @@ def index():
 
 
 @app.route('/predict', methods=['POST'])#'GET', 'POST'])
-def predict(input_json):
+def predict():
     """
     Parameters:
     ===========
-    Expectd JSON POST format: 
-    {'name': string, 
+    Expectd JSON POST format:
+    {'name': string,
      'blurb': string,
      'goal': float,
      'country': string(2),
@@ -41,12 +41,12 @@ def predict(input_json):
     ========
     Model predictions in json. Return format:
     {'pred': float}
-    """    
+    """
     # get input JSON from POST
-    #input_json = request.get_json(force=True)
-    input_json = json.loads(input_json)
+    input_json = request.get_json(force=True)
+    #input_json = json.loads(input_json)
     print(input_json)
-    
+
     # parse POST input JSON w/ error checking
     try:
         #
@@ -58,18 +58,18 @@ def predict(input_json):
 #         duration = input_json['duration']
 #         category = input_json['category']
         X_pred = pd.DataFrame.from_records(input_json, index=[0])
-    except:   
+    except:
         return app.response_class(response=json.dumps({}),
                                   status=400,
                                   mimetype='application/json')
-    
-    
+
+
     # 20191021_logreg_68 model only uses goal, duration, country, and category
-    # for prediction. 
+    # for prediction.
     cols_pred = ['goal', 'duration', 'country', 'category']
     X_pred = X_pred[cols_pred]
     y_pred = model.predict(X_pred.to_numpy())
-    
+
     #Testing block
     #print(f'prediction is {y_pred}')
     #return None
@@ -79,9 +79,9 @@ def predict(input_json):
 def main():
     # Testing Block
     #test1 = '''{"name": "asdfasdfasdf", "blurb": "asdfasdfasdfadsdfasdfadfasdf", "goal": 800.0, "country": "US", "duration":15.0, "category": "fashion"}'''
-    
+
     #predict(test1)
-    app.run(host='127.0.0.1', port=5000, debug=False)
+    app.run(host='127.0.0.1', port=5000, debug=True)
 
 
 if __name__ == '__main__':
