@@ -39,7 +39,3 @@ Here's an example command:
 2019-10-21 - Han - Made RestAPI with Flask and format. Tested locally.
 2019-10-21 - Han - Added EDA and two naive model notebooks. Created a model 0.68 accuracy.  
 2019-10-21 - Han - Setup project structure.
-
-PostgreSQL database id: gnlosqdo
-
-API Key: 290d0f39-0822-4eb4-a859-8c917a2cb3b4

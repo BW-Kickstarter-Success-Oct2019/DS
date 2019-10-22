@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
 
 # take in API data
-def get_results(API):
+def get_data(API):
     """for picking apart the contents of an API"""
     request = r.get(API).json()
     list1 = []
@@ -102,24 +102,32 @@ def get_results(API):
         list2.append(i['dict_b']['sub_a'])
         # json strings are dicts within dicts
 
-    # combine chosen lists 
+    # combine chosen lists -> return a list of tuples
     data_list = list(tuple(zip(list1, list2)))
 
 
-    def tuple_transformer(tuples):
-    """a function for tuple-list preprocessing practice"""
-        values = []
-        for i in tuples:
-            value = values.append(i[1])
-        return values
-    # data_list = [('happy', 3), ('sad',5), ('mad',4), ('crazy',7)]
-    # test = tuple_transformer(data_list)
-    # output -> [3, 5, 4, 7]
-    return tuple_transformer(data_list)
+    def tuple_transformer(params_list): #params - a list of tuples
+    """a function/recipe for tuple-list preprocessing 
+    and passing alist of tuples through a function"""
+        return ""
+
+    def model(parameters):
+        result = parameters[0] + parameters[1]
+        return result 
+
+    def predictor(params_list):
+        output = []
+        for params in params_list:
+            a = params[0]
+            b = params[1]
+            c = params[2]
+            output.append(model((b,c)))
+        return output
+    # eg. print(new(data_list)) -> [7,8,9,8]
 
 
     # pass through a machine-learning model (MLM)
-    def predict(parameters):
+    def appendor(parameters):
     """ make a prediction using the MLM"""
         
         # for inter-flask functionality use request module
@@ -134,16 +142,6 @@ def get_results(API):
         
         return all_values
 
-
-    def new(params_list):
-    """ recipe for passing list of tuples through a function """
-        for params in params_list:
-            a = params[0]
-            b = params[1]
-            c = params[2]
-            out = b + c
-        print(out)
-        #return out
 
     # return in json format
     json_str = json.dumps(data_list)
