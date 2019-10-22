@@ -8,7 +8,7 @@ Prediction will be returned in this JSON format:
 `{'pred': float}`
 
 Here's an example command:
-`curl -X POST -H "Content-Type: application/json" -d '{"name": "This is a test Kickstarter header", "blurb": "This is an example description of a kickstarter project to test for the API. I would like to thank my wife, parents, and all my loving family members for this to work. I would also like to thank all the Kickstarter team members and project leads for making this possible.", "goal": 800.0, "country": "US", "duration":15.0, "category": "fashion"}' http://127.0.0.1:5000/predict`
+```curl -X POST -H "Content-Type: application/json" -d '{"name": "This is a test Kickstarter header", "blurb": "This is an example description of a kickstarter project to test for the API. I would like to thank my wife, parents, and all my loving family members for this to work. I would also like to thank all the Kickstarter team members and project leads for making this possible.", "goal": 800.0, "country": "US", "duration":15.0, "category": "fashion"}' http://127.0.0.1:5000/predict```
 
 
 ## Directory Structure:
@@ -35,6 +35,7 @@ Here's an example command:
                           generated with `pip freeze > requirements.txt`
 ```
 ## Change log:
+2019-10-21 - Han - Deployed using ngrok tunneling for front/backend to test.
 2019-10-21 - Han - Made RestAPI with Flask and format. Tested locally.
 2019-10-21 - Han - Added EDA and two naive model notebooks. Created a model 0.68 accuracy.  
 2019-10-21 - Han - Setup project structure.
