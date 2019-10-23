@@ -35,6 +35,7 @@ Here's an example command:
                           generated with `pip freeze > requirements.txt`
 ```
 ## Change log:
+2019-10-22 - Luc - Added one naive model notebook, model accuracy of .86
 2019-10-21 - Han - Deployed using ngrok tunneling for front/backend to test.
 2019-10-21 - Han - Made RestAPI with Flask and format. Tested locally.
 2019-10-21 - Han - Added EDA and two naive model notebooks. Created a model 0.68 accuracy.  
