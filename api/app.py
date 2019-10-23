@@ -68,7 +68,7 @@ def predict():
     # for prediction.
     cols_pred = ['goal', 'duration', 'country', 'category']
     X_pred = X_pred[cols_pred]
-    y_pred = model.predict(X_pred.to_numpy())
+    y_pred = model.predict_proba(X_pred.to_numpy())[:, 1]
 
     #Testing block
     #print(f'prediction is {y_pred}')

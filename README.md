@@ -1,5 +1,5 @@
 # Model API
-The model API takes a JSON POST string and serves a prediction.
+The model API takes a JSON POST string and serves a prediction of probabilty of success.  
 
 The expected JSON POST format is:
 `{'name': string, 'blurb': string, 'goal': float, 'country': string(2), 'duration': float, 'category': string,}`
@@ -9,6 +9,9 @@ Prediction will be returned in this JSON format:
 
 Here's an example command:
 ```curl -X POST -H "Content-Type: application/json" -d '{"name": "This is a test Kickstarter header", "blurb": "This is an example description of a kickstarter project to test for the API. I would like to thank my wife, parents, and all my loving family members for this to work. I would also like to thank all the Kickstarter team members and project leads for making this possible.", "goal": 800.0, "country": "US", "duration":15.0, "category": "fashion"}' http://127.0.0.1:5000/predict```
+
+A sample command of very high success percentage would be:
+```curl -X POST -H "Content-Type: application/json" -d '{"name": "This is a test Kickstarter header", "blurb": "This is an example description of a kickstarter project to test for the API. I would like to thank my wife, parents, and all my loving family members for this to work. I would also like to thank all the Kickstarter team members and project leads for making this possible.", "goal": 2011.0, "country": "US", "duration":67.0, "category": "publishing"}' http://127.0.0.1:5000/predict```
 
 
 ## Directory Structure:
@@ -35,6 +38,8 @@ Here's an example command:
                           generated with `pip freeze > requirements.txt`
 ```
 ## Change log:
+2019-10-22 - Han - Change the RestAPI to serving a probability of success instead of just saying success or not.
+
 2019-10-22 - Luc - Added one naive model notebook, model accuracy of .86
 
 2019-10-21 - Han - Deployed using ngrok tunneling for front/backend to test.
