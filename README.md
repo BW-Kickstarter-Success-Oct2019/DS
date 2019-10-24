@@ -42,7 +42,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"name": "This is a test Ki
                           generated with `pip freeze > requirements.txt`
 ```
 ## Change log:
-2019-10-23 - Han - Modeled with full features. 0.69. 
+2019-10-23 - Han - Modeled with full app features. 0.69 accuracy. Deployed RestAPI.
 
 2019-10-23 - Han - Done text embedding modeling. Onward to modeling with full features.
 
