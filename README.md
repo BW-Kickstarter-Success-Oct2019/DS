@@ -24,19 +24,16 @@ curl -X POST -H "Content-Type: application/json" -d '{"name": "This is a test Ki
 
 ## Directory Structure:
 ```
-├── README.md          <- The top-level README for developers using this project.
-├── data               <- Not on github      
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+├── README.md          
+├── data               <- Stored locally, not uploaded to github
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── api                <- Model RestAPI using Flask
 │
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
+├── other_app          <- Luc's playground
 │
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
+├── models             <- Trained and serialized models
+│
+├── notebooks          <- Jupyter notebooks. 
 │
 ├── Pipfile            <- pipenv environment file
 │
