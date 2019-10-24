@@ -1,5 +1,9 @@
 # Model API
-The model API takes a JSON POST string and serves a prediction of probabilty of success.  
+The model API takes a JSON POST string and serves a prediction of probabilty of success. Here's our model architecture.
+![Model Architecture](model_architecture.jpg)
+
+Reference-style: 
+![alt text][logo]
 
 The expected JSON POST format is:
 `{'name': string, 'blurb': string, 'goal': float, 'country': string(2), 'duration': float, 'category': string,}`
