@@ -11,7 +11,7 @@ import pandas as pd
 import sklearn
 
 # specify MODEL_FILE to be loaded
-MODEL_FILE = "20191021_logreg_68.sav"
+MODEL_FILE = "20191022_logreg_68.sav"
 
 app = Flask(__name__)
 # load the model as global
