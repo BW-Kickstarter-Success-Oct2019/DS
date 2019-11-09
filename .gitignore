@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+other_app/.ipynb_checkpoints
+other_app/__pycache__
+>>>>>>> e07bf486807449e17e6c4164106bd7a5f4a6e348
 .ipynb_checkpoints
 data/
 notebooks/.ipynb_checkpoints
